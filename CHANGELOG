@@ -1,3 +1,7 @@
+1.25
+====
+general: Compatible Sass 3.5 compiler and meson >0.56, all warning removed
+
 1.24
 ====
 
