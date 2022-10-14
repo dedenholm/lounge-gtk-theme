@@ -187,7 +187,7 @@
     outline-color: $_outline_color;
     border-color: $_button_border_color;
     $button_fill: if($variant == 'light', image(lighten($c, 2%)),
-                                          image(lighten($c, 2%))) !global;
+                                          image(lighten($c, 2%)));
     background-image: $button_fill;
 
     outline-offset: if(lightness($c)>70%, -1px, -2px);
