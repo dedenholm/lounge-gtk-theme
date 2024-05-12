@@ -1,6 +1,6 @@
 project('lounge-gtk-theme',
         version: '1.24',
-        meson_version: '>= 0.45',
+        meson_version: '>= 0.56',
         license : ['GPL3+'],
         default_options: ['prefix=/usr'])
 
@@ -145,9 +145,9 @@ custom_target('Generate shell theme',
               install_dir: shell_dir)
 
 # Install assets
-shell_unused_assets_tone = run_command('sh', '-c', 'ls ' + join_paths(meson.source_root(), 'src', 'gnome-shell', 'assets') +
+shell_unused_assets_tone = run_command('sh', '-c', 'ls ' + join_paths(meson.project_source_root(), 'src', 'gnome-shell', 'assets') +
                                                        ' | grep "tango\|salsa\|rumba\|jive" | grep -v ' + theme_tone).stdout()
-shell_unused_assets_332_and_later = run_command('sh', '-c', 'ls ' + join_paths(meson.source_root(), 'src', 'gnome-shell', 'assets') +
+shell_unused_assets_332_and_later = run_command('sh', '-c', 'ls ' + join_paths(meson.project_source_root(), 'src', 'gnome-shell', 'assets') +
                                                                 ' | grep "close\-window\|calendar\-arrow"').stdout()
 
 if gnome_version.version_compare('<=3.30')
@@ -361,35 +361,35 @@ foreach theme : assets_themes
   # Helpers for excluding assets from different size/color variants
   set_variable(theme + '_assets_none', '')
   set_variable(theme + '_assets_light',
-               run_command('sh', '-c', 'ls ' + join_paths(meson.source_root(), 'src', theme, 'assets') +
+               run_command('sh', '-c', 'ls ' + join_paths(meson.project_source_root(), 'src', theme, 'assets') +
                                            ' | grep dark | sed s/-dark//').stdout())
   set_variable(theme + '_assets_dark',
-               run_command('sh', '-c', 'ls ' + join_paths(meson.source_root(), 'src', theme, 'assets') +
+               run_command('sh', '-c', 'ls ' + join_paths(meson.project_source_root(), 'src', theme, 'assets') +
                                            ' | grep dark').stdout())
   set_variable(theme + '_assets_regular',
-               run_command('sh', '-c', 'ls ' + join_paths(meson.source_root(), 'src', theme, 'assets') +
+               run_command('sh', '-c', 'ls ' + join_paths(meson.project_source_root(), 'src', theme, 'assets') +
                                            ' | grep compact | sed s/-compact//').stdout())
   set_variable(theme + '_assets_compact',
-               run_command('sh', '-c', 'ls ' + join_paths(meson.source_root(), 'src', theme, 'assets') +
+               run_command('sh', '-c', 'ls ' + join_paths(meson.project_source_root(), 'src', theme, 'assets') +
                                            ' | grep compact').stdout())
 
   set_variable(theme + '_assets_excluded_from_flat',
-               run_command('sh', '-c', 'ls ' + join_paths(meson.source_root(), 'src', theme, 'assets') +
+               run_command('sh', '-c', 'ls ' + join_paths(meson.project_source_root(), 'src', theme, 'assets') +
                                            ' | grep flat | sed s/-flat//').stdout())
   set_variable(theme + '_assets_excluded_from_prime',
-               run_command('sh', '-c', 'ls ' + join_paths(meson.source_root(), 'src', theme, 'assets') +
+               run_command('sh', '-c', 'ls ' + join_paths(meson.project_source_root(), 'src', theme, 'assets') +
                                            ' | grep flat').stdout())
   set_variable(theme + '_assets_tone',
-               run_command('sh', '-c', 'ls ' + join_paths(meson.source_root(), 'src', theme, 'assets') +
+               run_command('sh', '-c', 'ls ' + join_paths(meson.project_source_root(), 'src', theme, 'assets') +
                                            ' | grep "tango\|salsa\|rumba\|jive" | grep -v ' + theme_tone).stdout())
   set_variable(theme + '_assets_excluded_from_casual',
-               run_command('sh', '-c', 'ls ' + join_paths(meson.source_root(), 'src', theme, 'assets') +
+               run_command('sh', '-c', 'ls ' + join_paths(meson.project_source_root(), 'src', theme, 'assets') +
                                            ' | grep fancy | grep ' + theme_tone).stdout())
   set_variable(theme + '_assets_excluded_from_fancy',
-               run_command('sh', '-c', 'ls ' + join_paths(meson.source_root(), 'src', theme, 'assets') +
+               run_command('sh', '-c', 'ls ' + join_paths(meson.project_source_root(), 'src', theme, 'assets') +
                                            ' | grep fancy | grep ' + theme_tone + ' | sed s/-fancy-' + theme_tone + '//').stdout())
   set_variable(theme + '_assets_excluded_from_no_handles',
-               run_command('sh', '-c', 'ls ' + join_paths(meson.source_root(), 'src', theme, 'assets') +
+               run_command('sh', '-c', 'ls ' + join_paths(meson.project_source_root(), 'src', theme, 'assets') +
                                            ' | grep scrollbar\-handle').stdout())
   set_variable(theme + '_assets_excluded_from_with_handles', '')
 
@@ -529,29 +529,29 @@ theme = 'gtk3'
 
 set_variable(theme + '_assets_none', '')
 set_variable(theme + '_assets_light',
-             run_command('sh', '-c', 'ls ' + join_paths(meson.source_root(), 'src', theme, 'assets') +
+             run_command('sh', '-c', 'ls ' + join_paths(meson.project_source_root(), 'src', theme, 'assets') +
                                          ' | grep dark | sed s/-dark//').stdout())
 set_variable(theme + '_assets_dark',
-             run_command('sh', '-c', 'ls ' + join_paths(meson.source_root(), 'src', theme, 'assets') +
+             run_command('sh', '-c', 'ls ' + join_paths(meson.project_source_root(), 'src', theme, 'assets') +
                                          ' | grep dark').stdout())
 set_variable(theme + '_assets_regular',
-             run_command('sh', '-c', 'ls ' + join_paths(meson.source_root(), 'src', theme, 'assets') +
+             run_command('sh', '-c', 'ls ' + join_paths(meson.project_source_root(), 'src', theme, 'assets') +
                                          ' | grep compact | sed s/-compact//').stdout())
 set_variable(theme + '_assets_compact',
-             run_command('sh', '-c', 'ls ' + join_paths(meson.source_root(), 'src', theme, 'assets') +
+             run_command('sh', '-c', 'ls ' + join_paths(meson.project_source_root(), 'src', theme, 'assets') +
                                          ' | grep compact').stdout())
 
   set_variable(theme + '_assets_excluded_from_prime',
-               run_command('sh', '-c', 'ls ' + join_paths(meson.source_root(), 'src', theme, 'assets') +
+               run_command('sh', '-c', 'ls ' + join_paths(meson.project_source_root(), 'src', theme, 'assets') +
                                            ' | grep flat').stdout())
   set_variable(theme + '_assets_tone',
-               run_command('sh', '-c', 'ls ' + join_paths(meson.source_root(), 'src', theme, 'assets') +
+               run_command('sh', '-c', 'ls ' + join_paths(meson.project_source_root(), 'src', theme, 'assets') +
                                            ' | grep "tango\|salsa\|rumba\|jive" | grep -v tango').stdout())
   set_variable(theme + '_assets_excluded_from_casual',
-               run_command('sh', '-c', 'ls ' + join_paths(meson.source_root(), 'src', theme, 'assets') +
+               run_command('sh', '-c', 'ls ' + join_paths(meson.project_source_root(), 'src', theme, 'assets') +
                                            ' | grep fancy | grep ' + theme_tone).stdout())
   set_variable(theme + '_assets_excluded_from_no_handles',
-               run_command('sh', '-c', 'ls ' + join_paths(meson.source_root(), 'src', theme, 'assets') +
+               run_command('sh', '-c', 'ls ' + join_paths(meson.project_source_root(), 'src', theme, 'assets') +
                                            ' | grep scrollbar\-handle').stdout())
 
 install_subdir('src/' + theme +'/assets',

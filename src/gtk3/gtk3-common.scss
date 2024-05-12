@@ -166,7 +166,7 @@ label {
   &:disabled {
     color: $insensitive_fg_color;
 
-    selection { @extend %selected_items:disabled; }
+    selection { @extend %selected_items, :disabled; }
   }
 }
 
@@ -957,11 +957,11 @@ button {
 toolbar.inline-toolbar toolbutton {
   > button.flat { @extend %linked_middle; }
 
-  &:first-child > button.flat { @extend %linked:first-child; }
+  &:first-child > button.flat { @extend %linked, :first-child; }
 
-  &:last-child > button.flat { @extend %linked:last-child; }
+  &:last-child > button.flat { @extend %linked, :last-child; }
 
-  &:only-child > button.flat { @extend %linked:only-child; }
+  &:only-child > button.flat { @extend %linked, :only-child; }
 }
 
 %linked_middle {
@@ -1314,7 +1314,7 @@ button:link,
 button:visited {
   @extend %undecorated_button;
 
-  @extend *:link;
+  @extend *, :link;
 
   text-shadow: none;
 
@@ -1525,15 +1525,15 @@ combobox {
 
   &.linked {
     button:nth-child(2) {
-      &:dir(ltr) { @extend %linked:last-child; }
-      &:dir(rtl) { @extend %linked:first-child; }
+      &:dir(ltr) { @extend %linked, :last-child; }
+      &:dir(rtl) { @extend %linked, :first-child; }
     }
   }
 
   &:drop(active) { // FIXME: untested
     box-shadow: none;
 
-    button.combo { @extend %button_basic:drop(active); }
+    button.combo { @extend %button_basic, :drop(active); }
   }
 }
 
@@ -1546,14 +1546,14 @@ combobox {
   &:dir(rtl) { @extend %linked_middle; } // specificity bump
 }
 
-.linked:not(.vertical) > combobox:first-child > box > button.combo { @extend %linked:first-child; }
-.linked:not(.vertical) > combobox:last-child > box > button.combo { @extend %linked:last-child; }
-.linked:not(.vertical) > combobox:only-child > box > button.combo { @extend %linked:only-child; }
+.linked:not(.vertical) > combobox:first-child > box > button.combo { @extend %linked, :first-child; }
+.linked:not(.vertical) > combobox:last-child > box > button.combo { @extend %linked, :last-child; }
+.linked:not(.vertical) > combobox:only-child > box > button.combo { @extend %linked, :only-child; }
 
 .linked.vertical > combobox > box > button.combo { @extend %linked_vertical_middle; }
-.linked.vertical > combobox:first-child > box > button.combo { @extend %linked_vertical:first-child;}
-.linked.vertical > combobox:last-child > box > button.combo { @extend %linked_vertical:last-child; }
-.linked.vertical > combobox:only-child > box > button.combo { @extend %linked_vertical:only-child; }
+.linked.vertical > combobox:first-child > box > button.combo { @extend %linked_vertical, :first-child;}
+.linked.vertical > combobox:last-child > box > button.combo { @extend %linked_vertical, :last-child; }
+.linked.vertical > combobox:only-child > box > button.combo { @extend %linked_vertical, :only-child; }
 
 
 /************
@@ -2478,7 +2478,7 @@ notebook {
     > tabs > arrow {
       @extend %button_basic;
 
-      @extend %button_basic.flat;
+      @extend %button_basic, .flat;
 
       min-height: 16px;
       min-width: 16px;
@@ -4078,9 +4078,9 @@ placessidebar {
     }
 
     @at-root button.sidebar-button {
-      @extend %button_basic.flat;
+      @extend %button_basic, .flat;
 
-      @extend %button_selected.flat;
+      @extend %button_selected, .flat;
 
       min-height: 26px;
       min-width: 26px;
@@ -4570,7 +4570,7 @@ decoration {
 button.titlebutton {
   @extend %button_basic;
 
-  @extend %button_basic.flat;
+  @extend %button_basic, .flat;
 
   @include _button_text_shadow;
 
